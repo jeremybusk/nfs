@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# https://linuxize.com/post/how-to-install-and-configure-an-nfs-server-on-ubuntu-20-04/
 set -e
 if [ "$#" -ne 3 ]; then
   echo "Usage: $0 <uuid> <nfs node type server/client> \"<client ips>\""
@@ -37,7 +38,9 @@ install_server(){
   sudo mkdir -p $server_mnt && sudo chmod 0755 $server_mnt
   sudo mv /etc/exports /etc/exports.bkp
   for ip in $client_ips; do
-    echo "$server_mnt    $ip(rw,sync,no_subtree_check,insecure,no_root_squash)" | sudo tee -a /etc/exports
+    # risky echo "$server_mnt    $ip(rw,sync,no_subtree_check,insecure,no_root_squash)" | sudo tee -a /etc/exports
+    # http://fullyautolinux.blogspot.com/2015/11/nfs-norootsquash-and-suid-basic-nfs.html?m=1
+    echo "$server_mnt    $ip(rw,sync,no_subtree_check,insecure,root_squash)" | sudo tee -a /etc/exports
   done
   sudo chmod 0644 /etc/exports
   sudo systemctl reload nfs-server
