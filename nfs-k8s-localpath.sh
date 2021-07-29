@@ -34,7 +34,7 @@ install_client(){
 
 install_server(){
   echo Installing server.
-  sudo apt install nfs-kernel-server
+  sudo apt install -y nfs-kernel-server
   sudo mkdir -p $server_mnt && sudo chmod 0755 $server_mnt
   sudo mv /etc/exports /etc/exports.bkp
   for ip in $client_ips; do
