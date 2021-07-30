@@ -12,7 +12,7 @@ curl -LO https://raw.githubusercontent.com/jeremybusk/nfs/main/nfs-k8s-localpath
 
 /etc/exports
 ```
-/3a2261aa-f0c8-11eb-8ba2-838dc660e293    172.16.1.135(rw,sync,no_subtree_check,insecure,root_squash)
+/3a2261aa-f0c8-11eb-8ba2-838dc660e293    192.168.x.x(rw,sync,no_subtree_check,insecure,root_squash)
 ```
 
 /etc/fstab NFS4
