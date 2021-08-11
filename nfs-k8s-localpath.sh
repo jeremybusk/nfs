@@ -40,7 +40,7 @@ install_server(){
   for ip in $client_ips; do
     # risky echo "$server_mnt    $ip(rw,sync,no_subtree_check,insecure,no_root_squash)" | sudo tee -a /etc/exports
     # http://fullyautolinux.blogspot.com/2015/11/nfs-norootsquash-and-suid-basic-nfs.html?m=1
-    echo "$server_mnt    $ip(rw,sync,no_subtree_check,insecure,root_squash)" | sudo tee -a /etc/exports
+    echo "$server_mnt    $ip(fsid=root,rw,sync,no_subtree_check,insecure,root_squash)" | sudo tee -a /etc/exports
   done
   sudo chmod 0644 /etc/exports
   sudo systemctl reload nfs-server
